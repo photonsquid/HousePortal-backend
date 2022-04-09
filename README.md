@@ -1,1 +1,1 @@
-# homenet-backend
+# HomePortal - backend
