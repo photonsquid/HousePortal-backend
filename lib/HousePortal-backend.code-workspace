@@ -1,0 +1,14 @@
+{
+  "folders": [
+    {
+      "path": ".."
+    }
+  ],
+  "settings": {
+    "java.configuration.updateBuildConfiguration": "automatic"
+  },
+  "launch": {
+    "version": "0.2.0",
+    "configurations": []
+  }
+}
