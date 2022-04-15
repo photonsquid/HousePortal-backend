@@ -18,15 +18,11 @@ jobs:
         with:
           java-version: '17'
           distribution: 'adopt'
-        
-      - name: Build with Gradle
-        uses: gradle/gradle-build-action@v2
-        with:
-          arguments: build
       
       - name: Run tests with Gradle
         run: |
-          ./gradlew test
+          gradle build
+          gradle test
 
   publish:
     runs-on: "ubuntu-latest"
@@ -43,13 +39,12 @@ jobs:
           distribution: 'adopt'
 
       - name: Build with Gradle
-        uses: gradle/gradle-build-action@v2
-        with:
-          arguments: build
+        run: |
+          gradle build
 
       - name: Generate war
         run: |
-          ./gradlew war
+          gradle war
 
       - name: Build images
         run: |
