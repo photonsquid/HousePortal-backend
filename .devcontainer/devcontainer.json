@@ -25,7 +25,8 @@
   "extensions": [
 	"vscjava.vscode-java-pack",
 	"richardwillis.vscode-gradle-extension-pack",
-	"redhat.vscode-server-connector"
+	"redhat.vscode-server-connector",
+	"vivaxy.vscode-conventional-commits"
 ],
 
   // Use 'forwardPorts' to make a list of ports inside the container available locally.
