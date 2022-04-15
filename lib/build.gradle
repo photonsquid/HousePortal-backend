@@ -41,5 +41,6 @@ tasks.named('test') {
 }
 
 war {
+    archiveName = 'houseportal-backend.war'
     from 'src/webapp' // adds a file-set to the root of the archive
 }
