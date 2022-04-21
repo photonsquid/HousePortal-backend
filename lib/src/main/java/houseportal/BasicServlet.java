@@ -3,6 +3,7 @@ package houseportal;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -11,9 +12,15 @@ import javax.servlet.http.HttpServletResponse;
 
 @WebServlet(name = "BasicServlet", urlPatterns = { "basic" }, loadOnStartup = 1)
 public class BasicServlet extends HttpServlet {
+
+    private static final long serialVersionUID = 1L;
+    
+    @EJB
+	Facade f;
+
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.getWriter().print("Hello, World!");
+        response.setContentType("index.html");
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
