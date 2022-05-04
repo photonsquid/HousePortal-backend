@@ -9,7 +9,7 @@ import javax.persistence.TypedQuery;
 @Singleton
 public class Facade {
 	
-	@PersistenceContext
+	@PersistenceContext(unitName="houseportal")
 	private EntityManager em;
 	
 	public Collection<User> listUsers(){
@@ -25,8 +25,8 @@ public class Facade {
 		return req.getResultList();
 	}
 	
-	public void addUser(String username, String mail) {
-		User user = new User(username,mail);
+	public void addUser(String username, String mail,String name,String surname,String pwd_hashed,String oauth_token) {
+		User user = new User(username,mail,name,surname,pwd_hashed,oauth_token);
 
 		em.persist(user);
 	}
@@ -37,3 +37,4 @@ public class Facade {
 	}
 	
 }
+

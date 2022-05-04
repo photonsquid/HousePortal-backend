@@ -3,6 +3,7 @@ package houseportal;
 import java.io.Serializable;
 import java.util.*;
 
+import javax.jws.soap.SOAPBinding.Style;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -17,7 +18,7 @@ public class User implements Serializable{
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int id;
 
-    private String username,mail;
+    private String username,mail,name,surname,pwd_hashed,oauth_token;
 
 
     @ManyToMany(fetch = FetchType.EAGER)
@@ -26,8 +27,12 @@ public class User implements Serializable{
     public User() {
     }
 
-    public User(String username, String mail) {
+    public User(String username, String mail,String name,String surname,String pwd_hashed,String oauth_token ) {
         this.username = username;
+        this.name=name;
+        this.surname=surname;
+        this.pwd_hashed=pwd_hashed;
+        this.oauth_token=oauth_token;
         this.mail = mail;
         this.devices = new ArrayList<Device>();
     }
@@ -41,11 +46,43 @@ public class User implements Serializable{
     }
 
     public String getName() {
-        return this.username;
+        return this.name;
     }
 
     public void setName(String Name) {
-        this.username = Name;
+        this.name = Name;
+    }
+
+    public String getSurname() {
+        return this.surname;
+    }
+
+    public void setSurname(String surname) {
+        this.surname = surname;
+    }
+
+    public String getPwd_hashed() {
+        return this.pwd_hashed;
+    }
+
+    public void setPwd_hashed(String pwd_hashed) {
+        this.pwd_hashed = pwd_hashed;
+    }
+
+    public String getOauth_token() {
+        return this.oauth_token;
+    }
+
+    public void setOauth_token(String oauth_token) {
+        this.oauth_token = oauth_token;
+    }
+
+    public Collection<Device> getDevices() {
+        return this.devices;
+    }
+
+    public void setDevices(Collection<Device> devices) {
+        this.devices = devices;
     }
 
     public String getUsername() {

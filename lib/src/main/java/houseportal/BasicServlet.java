@@ -20,6 +20,7 @@ public class BasicServlet extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        f.addUser("ae","az@f.com","julien","sera","azafaefa","232ZKCS");
         response.setContentType("index.html");
     }
 

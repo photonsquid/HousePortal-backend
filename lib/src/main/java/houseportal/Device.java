@@ -13,7 +13,7 @@ import javax.persistence.ManyToMany;
 @Entity
 public class Device implements Serializable {
 
-    @ManyToMany(mappedBy="device",fetch = FetchType.EAGER)
+    @ManyToMany(mappedBy="devices",fetch = FetchType.EAGER)
 	private Collection<User> users;
 
     @Id
