@@ -34,3 +34,7 @@ Then in the integrated terminal type :
 ```shell
 mvn wildfly-jar:dev-watch
 ```
+
+## Database
+
+For the moment we use a MySql database hosted here : [https://remotemysql.com/](https://remotemysql.com/)
