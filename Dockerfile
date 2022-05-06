@@ -1,3 +1,2 @@
-FROM quay.io/wildfly/wildfly-centos7
-
-ADD lib/build/libs/houseportal-backend.war /opt/wildfly/standalone/deployments/
+FROM quay.io/wildfly/wildfly-centos7:latest
+ADD target/backend.war /opt/wildfly/standalone/deployments
