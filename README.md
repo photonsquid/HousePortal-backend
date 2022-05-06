@@ -35,6 +35,14 @@ Then in the integrated terminal type :
 mvn wildfly-jar:dev-watch
 ```
 
+## Tests
+
+Just run :
+
+```shell
+mvn test
+```
+
 ## Database
 
 For the moment we use a MySql database hosted here : [https://remotemysql.com/](https://remotemysql.com/)
