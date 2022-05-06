@@ -62,6 +62,7 @@ jobs:
           tag=$(git rev-parse --short HEAD)
           docker tag ghcr.io/photonsquid/houseportal-backend ghcr.io/photonsquid/houseportal-backend:$tag
           docker push ghcr.io/photonsquid/houseportal-backend:$tag
+          docker push ghcr.io/photonsquid/houseportal-backend
           echo ::set-output name=tag::$tag
       
       - name: Logout

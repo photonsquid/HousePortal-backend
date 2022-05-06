@@ -1,42 +1,49 @@
 package fr.photonsquid.houseportal.controller;
 
-import java.util.List;
+import java.util.UUID;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.NoResultException;
 import javax.persistence.Persistence;
-import javax.ws.rs.GET;
+import javax.persistence.Query;
+import javax.ws.rs.POST;
 import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
+import fr.photonsquid.houseportal.model.Credentials;
+
 @Path("/login")
 public class Login {
-    @GET
+    @POST
     @Produces("application/json")
-    public Response doGet(@PathParam("username") String username, @PathParam("password") String pwd) {
+    public Response doPost(Credentials cr) {
         EntityManagerFactory entityManagerFactory = null;
         EntityManager entityManager = null;
+        entityManagerFactory = Persistence.createEntityManagerFactory("houseportal");
+        entityManager = entityManagerFactory.createEntityManager();
+
+        String username = cr.getUsername();
+        String pwd = cr.getPwd();
+
         try {
-            entityManagerFactory = Persistence.createEntityManagerFactory("WebStore");
-            entityManager = entityManagerFactory.createEntityManager();
-
-            List<String> ids = entityManager.createQuery(
-                    "SELECT FROM users u WHERE u.username LIKE :custName", String.class)
-                    .setParameter("custName", username)
-                    .getResultList();
-            for (String id : ids) {
-                System.out.println(id);
+            Query query = entityManager
+                    .createQuery("Select u.pwd_hashed FROM User u WHERE u.username = :id");
+            query.setParameter("id", username);
+            String hashedPwd = (String) query.getSingleResult();
+            PasswordAuthentication pa = new PasswordAuthentication();
+            if (pa.authenticate(pwd.toCharArray(), hashedPwd)) {
+                String bearer = UUID.randomUUID().toString();
+                return Response.ok("{\"bearer\": \"" + bearer + "\"}", MediaType.APPLICATION_JSON).build();
+            } else {
+                return Response.status(401).build();
             }
-            return Response.ok("{bearer: kjhsdfglhsdfjgk}", MediaType.APPLICATION_JSON).build();
 
-        } finally {
-            if (entityManager != null)
-                entityManager.close();
-            if (entityManagerFactory != null)
-                entityManagerFactory.close();
+        } catch (NoResultException e) {
+            return Response.status(403).build();
         }
     }
+
 }

@@ -1,4 +1,4 @@
-package fr.photonsquid.houseportal.model;
+package fr.photonsquid.houseportal;
 
 import java.io.Serializable;
 import java.util.Objects;
@@ -17,7 +17,7 @@ public class User implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
-    private String username, mail, name, surname, pwd_hashed, oauth_token;
+    private String username, name, surname, mail, pwd_hashed, oauth_token;
 
     public User() {
     }
