@@ -22,7 +22,7 @@ jobs:
 
       - name: Generate war
         run: |
-          mvn wildfly:deploy
+          mvn war:war
 
       - name: Build images
         run: |
