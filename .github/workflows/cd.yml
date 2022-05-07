@@ -14,9 +14,11 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
+      - name: Update repos list
+        run: sudo apt-get update 
+
       - name: Install maven
-        run: sudo apt-get update && export DEBIAN_FRONTEND=noninteractive \
-          && apt-get -y install --no-install-recommends maven
+        run: sudo apt-get -y install --no-install-recommends maven
 
 
       - name: Clean cache
