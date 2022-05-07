@@ -20,11 +20,6 @@ jobs:
       - name: Install maven
         run: sudo apt-get -y install --no-install-recommends maven
 
-
-      - name: Clean cache
-        run: |
-          mvn clean install -X
-
       - name: Generate war
         run: |
           mvn war:war
