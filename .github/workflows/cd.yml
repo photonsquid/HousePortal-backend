@@ -22,7 +22,7 @@ jobs:
 
       - name: Clean cache
         run: |
-          rm -rf ~/.m2
+          mvn clean install -X
 
       - name: Generate war
         run: |
