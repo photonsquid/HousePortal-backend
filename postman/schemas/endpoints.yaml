@@ -34,8 +34,67 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
+  /register:
+    post:
+      summary: 'Create an account endpoint: A function that registers a new user'
+      operationId: createUser
+      tags:
+        - user
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AccountData'
+      responses:
+            '200':
+                description: 'Login response: User token and bearer'
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/Session'                  
+            default:
+                description: Unexpected error
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/Error'
+  /logout:
+      post:
+        summary: 'Logs out the user: Logs out the user'
+        operationId: : logs out
+        tags:
+           - user
+        requestBody:
+            required: false
+        headers:
+            Autorization:
+                description: Send the bearer to deconnect
+                schema:
+                    type: string
+                
+            
+        responses:
+            
+
+        
+
+    
+
+            
+
+    
+
+
 components:
   schemas:
+    AccountData:
+        type: object
+        required:
+            - username
+        properties:
+            username:
+                type: string
     LoginData:
       type: object
       required:
