@@ -90,8 +90,8 @@
                     <layers>
                         <layer>jaxrs-server</layer>
                         <!-- <layer>mysql-driver</layer> -->
-                        <!-- <layer>mariadb-driver</layer> -->
-                        <!-- <layer>management</layer> -->
+                        <layer>mariadb-driver</layer>
+                        <layer>management</layer>
                     </layers>
                     <excluded-layers>
                         <layer>deployment-scanner</layer>

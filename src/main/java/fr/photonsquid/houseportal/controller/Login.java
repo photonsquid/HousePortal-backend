@@ -13,6 +13,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
+import fr.photonsquid.houseportal.User;
 import fr.photonsquid.houseportal.model.Credentials;
 
 @Path("/login")
@@ -25,18 +26,21 @@ public class Login {
         entityManagerFactory = Persistence.createEntityManagerFactory("houseportal");
         entityManager = entityManagerFactory.createEntityManager();
 
-        String username = cr.getUsername();
+        String email = cr.getEmail();
         String pwd = cr.getPwd();
 
         try {
-            Query query = entityManager
-                    .createQuery("Select u.pwd_hashed FROM User u WHERE u.username = :id");
-            query.setParameter("id", username);
-            String hashedPwd = (String) query.getSingleResult();
+            Query query = entityManager.createQuery("FROM User u WHERE u.email = :id");
+            query.setParameter("id", email);
+            // QueryResult res = (QueryResult) query.getSingleResult();
+            User res = (User) query.getSingleResult();
             PasswordAuthentication pa = new PasswordAuthentication();
-            if (pa.authenticate(pwd.toCharArray(), hashedPwd)) {
+            if (pa.authenticate(pwd.toCharArray(), res.getPwd_hashed())) {
                 String bearer = UUID.randomUUID().toString();
-                return Response.ok("{\"bearer\": \"" + bearer + "\"}", MediaType.APPLICATION_JSON).build();
+                return Response.ok("{" +
+                        "\"token\": \"" + res.getToken() + "\",\n" +
+                        "\"bearer\": \"" + bearer +
+                        "\"}", MediaType.APPLICATION_JSON).build();
             } else {
                 return Response.status(401).build();
             }
