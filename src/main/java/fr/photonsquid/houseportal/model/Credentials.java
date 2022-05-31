@@ -3,23 +3,23 @@ package fr.photonsquid.houseportal.model;
 import java.util.Objects;
 
 public class Credentials {
-    private String username;
+    private String email;
     private String pwd;
 
     public Credentials() {
     }
 
-    public Credentials(String username, String pwd) {
-        this.username = username;
+    public Credentials(String id, String pwd) {
+        this.email = id;
         this.pwd = pwd;
     }
 
-    public String getUsername() {
-        return this.username;
+    public String getEmail() {
+        return this.email;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setEmail(String id) {
+        this.email = id;
     }
 
     public String getPwd() {
@@ -30,8 +30,8 @@ public class Credentials {
         this.pwd = pwd;
     }
 
-    public Credentials username(String username) {
-        setUsername(username);
+    public Credentials id(String id) {
+        setEmail(id);
         return this;
     }
 
@@ -48,18 +48,18 @@ public class Credentials {
             return false;
         }
         Credentials credentials = (Credentials) o;
-        return Objects.equals(username, credentials.username) && Objects.equals(pwd, credentials.pwd);
+        return Objects.equals(email, credentials.email) && Objects.equals(pwd, credentials.pwd);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(username, pwd);
+        return Objects.hash(email, pwd);
     }
 
     @Override
     public String toString() {
         return "{" +
-                " username='" + getUsername() + "'" +
+                " id='" + getEmail() + "'" +
                 ", pwd='" + getPwd() + "'" +
                 "}";
     }
