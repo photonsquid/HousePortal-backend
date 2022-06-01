@@ -3,22 +3,13 @@ package fr.photonsquid.houseportal.model;
 import java.util.Objects;
 
 public class QueryResult {
-    private String pwd_hashed;
-    private String token;
+    private String token, pwd_hashed;
 
     public QueryResult() {
     }
 
-    public QueryResult(String pwd_hashed, String token) {
-        this.pwd_hashed = pwd_hashed;
+    public QueryResult(String token, String pwd_hashed) {
         this.token = token;
-    }
-
-    public String getPwd_hashed() {
-        return this.pwd_hashed;
-    }
-
-    public void setPwd_hashed(String pwd_hashed) {
         this.pwd_hashed = pwd_hashed;
     }
 
@@ -30,13 +21,21 @@ public class QueryResult {
         this.token = token;
     }
 
-    public QueryResult pwd_hashed(String pwd_hashed) {
-        setPwd_hashed(pwd_hashed);
-        return this;
+    public String getPwd_hashed() {
+        return this.pwd_hashed;
+    }
+
+    public void setPwd_hashed(String pwd_hashed) {
+        this.pwd_hashed = pwd_hashed;
     }
 
     public QueryResult token(String token) {
         setToken(token);
+        return this;
+    }
+
+    public QueryResult pwd_hashed(String pwd_hashed) {
+        setPwd_hashed(pwd_hashed);
         return this;
     }
 
@@ -48,19 +47,19 @@ public class QueryResult {
             return false;
         }
         QueryResult queryResult = (QueryResult) o;
-        return Objects.equals(pwd_hashed, queryResult.pwd_hashed) && Objects.equals(token, queryResult.token);
+        return Objects.equals(token, queryResult.token) && Objects.equals(pwd_hashed, queryResult.pwd_hashed);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(pwd_hashed, token);
+        return Objects.hash(token, pwd_hashed);
     }
 
     @Override
     public String toString() {
         return "{" +
-                " pwd_hashed='" + getPwd_hashed() + "'" +
-                ", token='" + getToken() + "'" +
+                " token='" + getToken() + "'" +
+                ", pwd_hashed='" + getPwd_hashed() + "'" +
                 "}";
     }
 
