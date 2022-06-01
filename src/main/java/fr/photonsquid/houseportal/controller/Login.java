@@ -144,4 +144,46 @@ public class Login implements LoginInterface {
         }
     }
 
+    @GET
+    @Produces("application/json")
+    @Path("/device")
+    public Response getSettings(BearerCredentials cr) {
+        int id = session.checkSession(cr.getBearer());
+
+        if (id < 0) {
+            return Response.status(403).build();
+        }
+
+        try {
+            Query query = em.createQuery("FROM Settings s WHERE u.u_id = :id");
+            query.setParameter("id", id);
+            return Response.ok(query.getResultList(), MediaType.APPLICATION_JSON).build();
+
+        } catch (NoResultException e) {
+            return Response.status(403).build();
+        }
+    }
+
+    @GET
+    @Produces("application/json")
+    @Path("/device/{id}")
+    public Response setUserSettings(SettingsCredentials cr, @PathParam("key") int key) {
+        int id = session.checkSession(cr.getBearer());
+
+        if (id < 0) {
+            return Response.status(403).build();
+        }
+
+        try {
+            // update user settings in database
+            Query query = em.createQuery("Update Device d Set u." + key + " = :value WHERE d.u_id = :id");
+            query.setParameter("id", id);
+            query.setParameter("value", cr.getValue());
+            return Response.ok(query.getSingleResult(), MediaType.APPLICATION_JSON).build();
+
+        } catch (NoResultException e) {
+            return Response.status(403).build();
+        }
+    }
+
 }

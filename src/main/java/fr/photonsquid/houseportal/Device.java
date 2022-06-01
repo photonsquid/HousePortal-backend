@@ -70,27 +70,27 @@ public class Device implements Serializable {
         this.type = type;
     }
 
-    public Device id(int id) {
+    public Settings id(int id) {
         setId(id);
         return this;
     }
 
-    public Device name(String name) {
+    public Settings name(String name) {
         setName(name);
         return this;
     }
 
-    public Device location(String location) {
+    public Settings location(String location) {
         setLocation(location);
         return this;
     }
 
-    public Device status(String status) {
+    public Settings status(String status) {
         setStatus(status);
         return this;
     }
 
-    public Device type(String type) {
+    public Settings type(String type) {
         setType(type);
         return this;
     }
@@ -99,10 +99,10 @@ public class Device implements Serializable {
     public boolean equals(Object o) {
         if (o == this)
             return true;
-        if (!(o instanceof Device)) {
+        if (!(o instanceof Settings)) {
             return false;
         }
-        Device device = (Device) o;
+        Settings device = (Settings) o;
         return id == device.id && Objects.equals(name, device.name) && Objects.equals(location, device.location)
                 && Objects.equals(status, device.status) && Objects.equals(type, device.type);
     }
