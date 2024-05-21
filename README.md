@@ -1,5 +1,9 @@
 # Houseportal backend
 
+> ⚠️ Important note
+> 
+> This project is archived and will no longer be updated nor improved from now on. The code remains free to access and reuse if needed, but no technical support will be provided.
+
 ## Sommaire
 
 - [Houseportal backend](#houseportal-backend)
